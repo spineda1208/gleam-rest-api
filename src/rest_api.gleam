@@ -1,18 +1,16 @@
 import gleam/io
-import gleam/bytes_builder
+import gleam/bytes_builder.{type BytesBuilder}
+import gleam/http/elli
 import gleam/http/response.{type Response}
 import gleam/http/request.{type Request}
-import mist.{type ResponseData}
 
-pub fn test_service(_req: Request(t)) -> Response(ResponseData) {
+pub fn test_service(req: Request(t)) -> Response(BytesBuilder) {
   let body = bytes_builder.from_string("Hello motha foca !!")
-  io.debug("200: Request Received")
+  io.debug(req.method)
   response.new(200)
-  |> response.set_body(mist.Bytes(body))
+  |> response.set_body(body)
 }
 
 pub fn main() {
-  mist.new(test_service)
-  |> mist.port(8080)
-  |> mist.start_http
+  elli.become(test_service, on_port: 8080)
 }

@@ -15,8 +15,7 @@ version = "1.0.0"
 [dependencies]
 gleam_stdlib = "~> 0.34 or ~> 1.0"
 gleam_http = "~> 3.6"
-mist = "~> 0.17"
-gleam_cowboy = "~> 0.7"
+gleam_elli = "~> 2.4"
 
 [dev-dependencies]
 gleeunit = "~> 1.0"
